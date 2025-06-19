@@ -7,6 +7,7 @@ function MCQPractice() {
   const [subjects, setSubjects] = useState([]);
   const [chapters, setChapters] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState(null);
+   const [searchQuery, setSearchQuery] = useState(""); 
   const navigate = useNavigate();
 
   // Load subjects on mount
@@ -19,10 +20,15 @@ function MCQPractice() {
   // Load chapters when subject is selected
   const handleSubjectClick = (subject) => {
     setSelectedSubject(subject);
+    setSearchQuery(""); 
     api.get(`/exam/chapters/${subject.id}/`)
       .then(res => setChapters(res.data))
       .catch(err => console.error("Error fetching chapters:", err));
   };
+
+  const filteredChapters = chapters.filter((chapter) =>
+    chapter.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="mcq-container">
@@ -39,9 +45,22 @@ function MCQPractice() {
         </>
       ) : (
         <>
+        <div className="headingBar-container">
           <h2>{selectedSubject.name} - Chapter Tests</h2>
+          {/* ✅ Search input */}
+          <div className="search-bar-container">
+  <input
+    type="text"
+    placeholder="Search"
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="chapter-search-input"
+  />
+  
+</div>
+</div>
           <ul>
-            {chapters.map((chapter) => (
+            {filteredChapters.map((chapter) => (
               <li key={chapter.id}>
                 {chapter.name}{" "}
                 <button
