@@ -102,7 +102,9 @@
   .navbar-links.active {
     display: flex;
   }
-
+.navbar-links.active {
+    z-index: 999;
+}
   .navbar-toggle {
     display: flex;
   }
