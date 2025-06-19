@@ -36,10 +36,14 @@ function AuthPage() {
     try {
       if (isLogin) {
         // LOGIN API CALL
-        const response = await api.post("accounts/login/", {
+        const response = await api.post("token/", {
           username: formData.name,
           password: formData.password,
         });
+        const { access, refresh } = response.data;
+        localStorage.setItem("access_token", access);
+        localStorage.setItem("refresh_token", refresh);
+
         console.log("Login Success:", response.data);
         navigate("/dashboard");
       } else {
