@@ -1,0 +1,42 @@
+.mcq-container {
+  padding: 2rem;
+  color: #fff;
+}
+
+.mcq-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.mcq-container li {
+  background-color: #333;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.mcq-container li:hover {
+  background-color: #444;
+}
+
+.mcq-container button {
+  margin-left: 1rem;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.back-btn {
+  margin-top: 1rem;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
