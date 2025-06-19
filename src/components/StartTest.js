@@ -22,9 +22,23 @@ function StartTest() {
     setAnswers({ ...answers, [qid]: option });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+  try {
+    // 1️⃣ Call backend API to submit the test
+    const res = await api.post(`/exam/submit-test/${chapterId}/`, {
+      answers: answers
+    });
+    console.log("Test submitted:", res.data);
+
+    // 2️⃣ Mark as submitted (UI shows result)
     setSubmitted(true);
-  };
+
+  } catch (err) {
+    console.error("Error submitting test:", err);
+    alert("Error submitting test. Please try again.");
+  }
+};
+
 
   const attemptedCount = Object.keys(answers).length;
   const score = questions.filter(q => answers[q.id] === q.answer).length;

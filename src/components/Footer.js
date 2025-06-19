@@ -6,7 +6,9 @@ import "./Footer.css"; // optional for custom styles
 function Footer() {
   return (
     <footer className="footer">
-      © {new Date().getFullYear()} Hardik Pampaniya
+      © {new Date().getFullYear()} Hardik Pampaniya <br />
+             
+
     </footer>
   );
 }
