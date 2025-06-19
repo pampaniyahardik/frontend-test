@@ -22,17 +22,12 @@ const [attemptedTests, setAttemptedTests] = useState(0);
       .then(res => setSubjects(res.data))
       .catch(err => console.error("Error fetching subjects:", err));
 
-    api.get("/exam/subjects/")
+    api.get("/exam/progress/")
     .then(res => {
-      let total = 0;
-      res.data.forEach(subject => {
-        total += subject.total_chapters; // OR use chapters length if you don’t have total_chapters in API
-      });
-      setTotalTests(total);
-    });
-
-    api.get("/exam/attempted/") // Replace with your real endpoint for attempted/completed tests
-    .then(res => setAttemptedTests(res.data.length));
+      setTotalTests(res.data.total_tests);
+      setAttemptedTests(res.data.attempted_tests);
+    })
+    .catch(err => console.error("Progress API error:", err));
 
 
   }, []);
