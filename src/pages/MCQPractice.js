@@ -42,7 +42,12 @@ const percentage = totalTests > 0 ? Math.round((attemptedTests / totalTests) * 1
   const handleSubjectClick = (subject) => {
     setSelectedSubject(subject);
     setSearchQuery(""); 
-    api.get(`/exam/chapters/${subject.id}/`)
+
+    api.get(`/exam/chapters/${subject.id}/`,{
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("access")}`,
+    },
+  })
       .then(res => setChapters(res.data))
       .catch(err => console.error("Error fetching chapters:", err));
   };
