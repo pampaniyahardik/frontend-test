@@ -56,6 +56,13 @@ const percentage = totalTests > 0 ? Math.round((attemptedTests / totalTests) * 1
     chapter.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+const getSubjects = () => {
+  api.get("/exam/subjects/")
+    .then(res => setSubjects(res.data))
+    .catch(err => console.error("Error fetching subjects:", err));
+};
+
+
   return (
     <div className="mcq-container">
   {!selectedSubject ? (
@@ -82,12 +89,34 @@ const percentage = totalTests > 0 ? Math.round((attemptedTests / totalTests) * 1
       {/* ✅ Subjects list */}
       <h2>Select a Subject</h2>
       <ul>
-        {subjects.map((subject) => (
-          <li key={subject.id} onClick={() => handleSubjectClick(subject)}>
-            {subject.name}
-          </li>
-        ))}
-      </ul>
+  {subjects.map((subject) => {
+    const percent = subject.total_tests > 0
+      ? Math.round((subject.attempted_tests / subject.total_tests) * 100)
+      : 0;
+
+    return (
+      <li
+        key={subject.id}
+        onClick={() => handleSubjectClick(subject)}
+        style={{ position: "relative", paddingBottom: "20px" }}
+      >
+        {subject.name} ({percent}%)
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            bottom: 0,
+            height: "5px",
+            width: `${percent}%`,
+            backgroundColor: "green",
+            transition: "width 0.3s ease",
+          }}
+        />
+      </li>
+    );
+  })}
+</ul>
+
     </>
   ) : (
     <>
@@ -106,23 +135,27 @@ const percentage = totalTests > 0 ? Math.round((attemptedTests / totalTests) * 1
       </div>
 
       <ul>
-        {filteredChapters.map((chapter) => (
-          <li key={chapter.id}>
-            {chapter.name}{" "}
-            <button
-              onClick={() => navigate(`/start-test/${chapter.id}`)}
-              className="start-test-btn"
-            >
-              Start Test
-            </button>
-          </li>
-        ))}
-      </ul>
+  {filteredChapters.map((chapter) => (
+    <li key={chapter.id}>
+      {chapter.name}{" "}
+      {chapter.score != null && `(Marks: ${chapter.score})`}{" "}
+      <button
+        onClick={() => navigate(`/start-test/${chapter.id}`)}
+        className="start-test-btn"
+      >
+        {chapter.is_completed ? "Reattempt" : "Start Test"}
+      </button>
+    </li>
+  ))}
+</ul>
+
       <button
         className="back-btn"
         onClick={() => {
           setSelectedSubject(null);
           setChapters([]);
+          getSubjects(); 
+      
         }}
       >
         Back to Subjects
