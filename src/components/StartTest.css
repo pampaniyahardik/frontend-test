@@ -21,10 +21,10 @@
   background-color: #222;
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.05); */
   transition: border 0.3s;
 }
-
+.question-card h3 {margin-top: 0;}
 .question-card.correct {
   border: 2px solid #00ff7f; /* Green for correct */
 }
