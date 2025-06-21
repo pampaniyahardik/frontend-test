@@ -100,7 +100,7 @@ const getSubjects = () => {
         onClick={() => handleSubjectClick(subject)}
         style={{ position: "relative", paddingBottom: "20px" }}
       >
-        {subject.name} ({percent}%)
+        {subject.name}
         <div
           style={{
             position: "absolute",
