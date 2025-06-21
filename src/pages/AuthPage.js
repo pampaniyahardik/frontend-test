@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./AuthPage.css"; // same styling file
 import { useNavigate } from "react-router-dom";
 import api from "../api";
+import axios from "axios";
 
 function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -34,29 +35,36 @@ function AuthPage() {
     }
 
     try {
-      if (isLogin) {
-        // LOGIN API CALL
-        const response = await api.post("token/", {
-          username: formData.name,
-          password: formData.password,
-        });
-        const { access, refresh } = response.data;
-        localStorage.setItem("access_token", access);
-        localStorage.setItem("refresh_token", refresh);
+     if (isLogin) {
+  // ✅ This still uses `api` → because JWT is needed.
+  const response = await api.post("token/", {
+    username: formData.name,
+    password: formData.password,
+  });
+  const { access, refresh } = response.data;
+  localStorage.setItem("access_token", access);
+  localStorage.setItem("refresh_token", refresh);
 
-        console.log("Login Success:", response.data);
-        navigate("/dashboard");
-      } else {
-        // REGISTER API CALL
-        const response = await api.post("accounts/register/", {
-          username: formData.name,
-          password: formData.password,
-          confirm_password: formData.confirmPassword,
-        });
-        console.log("Register Success:", response.data);
-        alert("Registration successful! Please login.");
-        toggleMode();
-      }
+  console.log("Login Success:", response.data);
+  navigate("/dashboard");
+} else {
+  // ✅ Use raw axios for public register
+  const response = await axios.post(
+    "https://pampaniyahardik.pythonanywhere.com/api/accounts/register/",
+    {
+      username: formData.name,
+      password: formData.password,
+      confirm_password: formData.confirmPassword,
+    },
+    {
+      withCredentials: true, // optional, if you need cookies
+    }
+  );
+
+  console.log("Register Success:", response.data);
+  alert("Registration successful! Please login.");
+  toggleMode();
+}
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.detail || "Something went wrong!");
