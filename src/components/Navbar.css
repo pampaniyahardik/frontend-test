@@ -1,0 +1,111 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #181818; /* Slightly lighter than pure black for depth */
+  padding: 1rem 2rem;
+  color: #fff;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05); /* subtle glow under navbar */
+}
+
+.navbar-logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-links button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navbar-links button::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #fff;
+  transition: width 0.3s;
+}
+
+.navbar-links button:hover::after {
+  width: 100%;
+}
+
+.navbar-links button:hover {
+  color: #ddd;
+}
+
+/* Toggle icon for mobile */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* subtle glow on toggle */
+  padding: 0.4rem;
+  border-radius: 4px;
+  transition: box-shadow 0.3s;
+}
+
+.navbar-toggle:hover {
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.navbar-toggle span {
+  height: 3px;
+  width: 25px;
+  background: #fff;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Toggle animation */
+.navbar-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #181818;
+    flex-direction: column;
+    width: 200px;
+    padding: 1rem;
+    display: none;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05); /* shadow for dropdown */
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+.navbar-links.active {
+    z-index: 999;
+}
+  .navbar-toggle {
+    display: flex;
+  }
+}

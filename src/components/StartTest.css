@@ -1,0 +1,123 @@
+.start-test-container {
+  min-height: 100vh;
+  background-color: #111;
+  color: #fff;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  padding: 2rem;
+}
+
+.test-header {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.question-card {
+  background-color: #222;
+  padding: 1.5rem;
+  border-radius: 8px;
+  /* box-shadow: 0 0 20px rgba(255, 255, 255, 0.05); */
+  transition: border 0.3s;
+}
+.question-card h3 {margin-top: 0;}
+.question-card.correct {
+  border: 2px solid #00ff7f; /* Green for correct */
+}
+
+.question-card.wrong {
+  border: 2px solid #ff4c4c; /* Red for wrong */
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.option-btn {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.option-btn:hover {
+  background-color: #444;
+}
+
+.option-btn.selected {
+  background-color: #555;
+  border: 1px solid #fff;
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+.correct-answer {
+  margin-top: 0.8rem;
+  font-size: 1rem;
+  color: #00ff7f;
+}
+
+.submit-btn {
+  margin-top: 2rem;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #ddd;
+}
+.test-header {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.back-dashboard-btn {
+  margin-top: 2rem;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-dashboard-btn:hover {
+  background-color: #ddd;
+}
+.score-display {
+    margin-top: 10px;
+}
+
+
+
+/* Correct option border after submit */
+.option-btn.correct-option {
+  border: 1px solid green;
+}
+
+/* Wrong option border after submit */
+.option-btn.wrong-option {
+  border: 1px solid red;
+}
