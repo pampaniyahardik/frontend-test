@@ -54,6 +54,7 @@ function AuthPage() {
 
         console.log("Login Success:", response.data);
         setUser(formData.name);
+        console.log("user",user)
 
         navigate("/dashboard");
       } else {
