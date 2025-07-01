@@ -7,7 +7,7 @@ import { UserContext } from "../context/UserContext";
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState("mcq");
-  const userName = "Student"; // TODO: pass real name later
+
   const { user } = useContext(UserContext);
 
 
