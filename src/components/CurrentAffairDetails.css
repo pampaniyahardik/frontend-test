@@ -1,0 +1,42 @@
+/* CurrentAffairDetails.css */
+.ca-details-container {
+  background-color: #121212;
+  color: #ffffff;
+  padding: 2rem;
+  /* border-radius: 12px; */
+  /* max-width: 800px; */
+  /* margin: 2rem auto; */
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); */
+}
+
+.ca-details-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #00bcd4;
+  text-align: center;
+}
+
+.ca-content {
+  background-color: #1e1e1e;
+  border: 1px solid #2e2e2e;
+  padding:0 1rem;
+  border-radius: 8px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.ca-content {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+.ca-content::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.01); /* tiny overlay */
+  pointer-events: none;
+}
+
