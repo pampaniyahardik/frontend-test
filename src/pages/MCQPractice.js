@@ -4,6 +4,8 @@ import "./MCQPractice.css";
 import { useNavigate } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import CurrentAffairs from "../components/CurrentAffairs"; // adjust path if needed
+
 
 
 function MCQPractice() {
@@ -89,6 +91,14 @@ const getSubjects = () => {
       {/* ✅ Subjects list */}
       <h2>Select a Subject</h2>
       <ul>
+
+      <CurrentAffairs onDateClick={(date) => {
+  console.log("Clicked CA date:", date);
+  // Navigate or fetch test later
+}} />
+
+
+
   {subjects.map((subject) => {
     const percent = subject.total_tests > 0
       ? Math.round((subject.attempted_tests / subject.total_tests) * 100)
